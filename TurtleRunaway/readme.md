@@ -21,6 +21,6 @@ Turtle Runaway
 <br/>
 
 ## 화면 구성
-<p align = "center"><img src = "https://github.com/sohxxny/ToyProject/assets/119118662/766b97ac-d6bd-4105-9c01-316768087d95" width = "300px" alt = "desc_image1"></img>
-<img src = "https://github.com/sohxxny/ToyProject/assets/119118662/992772a9-48c8-4bc0-bc61-f7807a1e62e4" width = "300px" alt = "desc_image2"></img>
+<p align = "center"><img src = "https://github.com/sohxxny/ToyProject/assets/119118662/766b97ac-d6bd-4105-9c01-316768087d95" width = "300px" alt = "desc_image1"></img><br/>
+<img src = "https://github.com/sohxxny/ToyProject/assets/119118662/992772a9-48c8-4bc0-bc61-f7807a1e62e4" width = "300px" alt = "desc_image2"></img><br/>
 <img src = "https://github.com/sohxxny/ToyProject/assets/119118662/b3c34f0c-7ff2-4320-8966-36fd9c82342f" width = "300px" alt = "desc_image3"></img></p>
