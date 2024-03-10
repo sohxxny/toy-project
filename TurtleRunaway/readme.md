@@ -1,6 +1,6 @@
 Turtle Runaway
 =============
-python의 turtle 그래픽을 이용한 미니 게임
+python의 turtle graphics를 이용한 미니 게임
 <br/>
 <br/>
 
