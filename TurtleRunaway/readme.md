@@ -1,6 +1,6 @@
 Turtle Runaway
 =============
-오픈소스소프트웨어 4주차 과제
+python의 turtle 그래픽을 이용한 미니 게임
 <br/>
 <br/>
 
