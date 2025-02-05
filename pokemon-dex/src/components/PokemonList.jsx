@@ -1,8 +1,7 @@
 import { PokemonCard } from "./PokemonCard";
+import { MOCK_DATA } from "../data/mockData";
 
 export const PokemonList = () => {
-  const mockData = [{}, {}, {}, {}, {}, {}, {}, {}, {}];
-
   const listStyle = {
     display: "grid",
     gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))",
@@ -12,8 +11,8 @@ export const PokemonList = () => {
 
   return (
     <div style={listStyle}>
-      {mockData.map((_, index) => (
-        <PokemonCard key={index} />
+      {MOCK_DATA.map((pokemon) => (
+        <PokemonCard key={pokemon.id} data={pokemon} />
       ))}
     </div>
   );

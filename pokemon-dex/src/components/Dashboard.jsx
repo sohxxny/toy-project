@@ -1,3 +1,5 @@
+import pokeballImage from "../assets/pokeball.png";
+
 export const Dashboard = () => {
   const myPokemons = [{}, {}, {}, {}, {}, {}];
 
@@ -18,12 +20,20 @@ export const Dashboard = () => {
     border: "1px solid black",
   };
 
+  const imageStyle = {
+    width: "100%",
+    height: "100%",
+    objectFit: "cover",
+  };
+
   return (
     <div style={dashboardStyle}>
       <div>나만의 포켓몬</div>
       <div style={boxesStyle}>
         {myPokemons.map((_, index) => (
-          <div key={index} style={boxStyle}></div>
+          <div key={index} style={boxStyle}>
+            <img style={imageStyle} src={pokeballImage} alt="포켓볼" />
+          </div>
         ))}
       </div>
     </div>
