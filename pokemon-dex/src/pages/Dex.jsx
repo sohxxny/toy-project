@@ -1,7 +1,15 @@
+import { Dashboard } from "../components/Dashboard";
+import { PokemonList } from "../components/PokemonList";
+
 export const Dex = () => {
+  const dexStyle = {
+    display: "flex",
+    flexDirection: "column",
+  };
   return (
-    <>
-      <div>도감 페이지입니다.</div>
-    </>
+    <div style={dexStyle}>
+      <Dashboard />
+      <PokemonList />
+    </div>
   );
 };
