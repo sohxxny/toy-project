@@ -1,4 +1,4 @@
-export const PokemonCard = ({ data }) => {
+export const PokemonCard = ({ data, buttonType, addPokemon }) => {
   const { img_url, korean_name, id } = data;
 
   const cardStyle = {
@@ -15,7 +15,7 @@ export const PokemonCard = ({ data }) => {
       <img src={img_url} />
       <div>{korean_name}</div>
       <div>No. {id}</div>
-      <button>추가</button>
+      <button onClick={() => addPokemon(data)}>{buttonType}</button>
     </div>
   );
 };
