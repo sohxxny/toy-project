@@ -1,5 +1,8 @@
 import { useNavigate } from "react-router-dom";
 
+/**
+ * * 홈 페이지
+ */
 export const Home = () => {
   const navigate = useNavigate();
 
