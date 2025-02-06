@@ -11,6 +11,14 @@ export const Dex = () => {
   const [myPokemons, setMyPokemons] = useState([]);
 
   const addPokemon = (newPokemon) => {
+    if (myPokemons.length >= 6) {
+      alert("더 이상 선택할 수 없습니다.");
+      return;
+    }
+    if (myPokemons.some((pokemon) => pokemon.id === newPokemon.id)) {
+      alert("이미 선택된 포켓몬입니다.");
+      return;
+    }
     setMyPokemons([...myPokemons, newPokemon]);
   };
 
