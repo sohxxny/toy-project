@@ -1,6 +1,13 @@
 import pokeballImage from "../assets/pokeball.png";
 import { PokemonCard } from "./PokemonCard";
 
+/**
+ * * 사용자가 선택한 포켓몬을 표시하는 컴포넌트
+ * @param {array} myPokemons - 사용자가 선택한 포켓몬 객체 리스트 [
+ *    {img_url, korean_name, types, id, description}
+ * ]
+ * @param {Function} removePokemon - 포켓몬 삭제 핸들러 함수 (id) => void
+ */
 export const Dashboard = ({ myPokemons, removePokemon }) => {
   const dashboardStyle = {
     display: "flex",
@@ -42,7 +49,7 @@ export const Dashboard = ({ myPokemons, removePokemon }) => {
         ))}
 
         {/* 남은 공간은 포켓볼 그리기*/}
-        {Array.from({ length: MAX_POKEMON_NUM - myPokemons.length }, {}).map(
+        {Array.from({ length: MAX_POKEMON_NUM - myPokemons.length }).map(
           (_, index) => (
             <div style={boxStyle} key={index}>
               <img style={imageStyle} src={pokeballImage} alt="포켓볼" />

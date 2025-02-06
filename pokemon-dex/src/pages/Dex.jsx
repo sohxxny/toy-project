@@ -2,6 +2,9 @@ import { useState } from "react";
 import { Dashboard } from "../components/Dashboard";
 import { PokemonList } from "../components/PokemonList";
 
+/**
+ * * 포켓몬 도감 페이지
+ */
 export const Dex = () => {
   const dexStyle = {
     display: "flex",
