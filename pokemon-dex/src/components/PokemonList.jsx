@@ -1,12 +1,13 @@
 import { PokemonCard } from "./PokemonCard";
 import { MOCK_DATA } from "../data/mockData";
+import styled from "styled-components";
 
-const listStyle = {
-  display: "grid",
-  gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))",
-  alignItems: "center",
-  justifyContent: "center",
-};
+const StyledCardsList = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  align-items: center;
+  justify-content: center;
+`;
 
 /**
  * * 포켓몬 전체 리스트를 카드로 보여주는 컴포넌트
@@ -14,7 +15,7 @@ const listStyle = {
  */
 export const PokemonList = ({ addPokemon }) => {
   return (
-    <div style={listStyle}>
+    <StyledCardsList>
       {MOCK_DATA.map((pokemon) => (
         <PokemonCard
           key={pokemon.id}
@@ -23,6 +24,6 @@ export const PokemonList = ({ addPokemon }) => {
           onClick={addPokemon}
         />
       ))}
-    </div>
+    </StyledCardsList>
   );
 };

@@ -1,30 +1,31 @@
+import styled from "styled-components";
 import pokeballImage from "../assets/pokeball.png";
 import { PokemonCard } from "./PokemonCard";
 
 const MAX_POKEMON_NUM = 6;
 
-const dashboardStyle = {
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  justifyContent: "center",
-};
+const StyledDashboard = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
 
-const boxesStyle = {
-  display: "flex",
-};
+const StyledPokeballs = styled.div`
+  display: flex;
+`;
 
-const boxStyle = {
-  width: "100px",
-  height: "100px",
-  border: "1px solid black",
-};
+const StyledPokeball = styled.div`
+  width: 100px;
+  height: 100px;
+  border: 1px soild black;
+`;
 
-const imageStyle = {
-  width: "100%",
-  height: "100%",
-  objectFit: "cover",
-};
+const PokeballImage = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`;
 
 /**
  * * 사용자가 선택한 포켓몬을 표시하는 컴포넌트
@@ -37,9 +38,9 @@ export const Dashboard = ({ myPokemons, removePokemon }) => {
   const availableCount = MAX_POKEMON_NUM - myPokemons.length;
 
   return (
-    <div style={dashboardStyle}>
+    <StyledDashboard>
       <div>나만의 포켓몬</div>
-      <div style={boxesStyle}>
+      <StyledPokeballs>
         {/* 선택된 포켓몬 개수만큼 그리기 */}
         {myPokemons.map((myPokemon) => (
           <PokemonCard
@@ -52,11 +53,11 @@ export const Dashboard = ({ myPokemons, removePokemon }) => {
 
         {/* 남은 공간은 포켓볼 그리기*/}
         {Array.from({ length: availableCount }).map((_, index) => (
-          <div style={boxStyle} key={index}>
-            <img style={imageStyle} src={pokeballImage} alt="포켓볼" />
-          </div>
+          <StyledPokeball key={index}>
+            <PokeballImage src={pokeballImage} alt="포켓볼" />
+          </StyledPokeball>
         ))}
-      </div>
-    </div>
+      </StyledPokeballs>
+    </StyledDashboard>
   );
 };

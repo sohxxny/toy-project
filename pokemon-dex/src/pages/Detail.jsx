@@ -9,7 +9,6 @@ export const Detail = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const pokemonId = searchParams.get("id");
-  const pokemon = searchPokemon(pokemonId);
 
   // * id를 통해 해당 포켓몬 데이터를 반환하는 함수
   const searchPokemon = (id) => {
@@ -20,6 +19,8 @@ export const Detail = () => {
   const goToBack = () => {
     navigate(-1);
   };
+
+  const pokemon = searchPokemon(pokemonId);
 
   return (
     <div>

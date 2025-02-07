@@ -1,13 +1,14 @@
 import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
 
-const cardStyle = {
-  height: "300px",
-  border: "1px solid black",
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  justifyContent: "center",
-};
+const StyleCard = styled.div`
+  height: 300px;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
 
 /**
  * * 포켓몬 카드 하나를 나타내는 컴포넌트
@@ -33,11 +34,11 @@ export const PokemonCard = ({ data, buttonType, onClick }) => {
   };
 
   return (
-    <div onClick={() => goToDetail(id)} style={cardStyle}>
+    <StyleCard onClick={() => goToDetail(id)}>
       <img src={img_url} />
       <div>{korean_name}</div>
       <div>No. {id}</div>
       <button onClick={(e) => buttonClick(e)}>{buttonType}</button>
-    </div>
+    </StyleCard>
   );
 };

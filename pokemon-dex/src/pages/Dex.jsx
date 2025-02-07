@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { Dashboard } from "../components/Dashboard";
 import { PokemonList } from "../components/PokemonList";
+import styled from "styled-components";
 
-const dexStyle = {
-  display: "flex",
-  flexDirection: "column",
-};
+const StyledDexPage = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 
 /**
  * * 포켓몬 도감 페이지
@@ -37,9 +38,9 @@ export const Dex = () => {
   };
 
   return (
-    <div style={dexStyle}>
+    <StyledDexPage>
       <Dashboard myPokemons={myPokemons} removePokemon={removePokemon} />
       <PokemonList addPokemon={addPokemon} />
-    </div>
+    </StyledDexPage>
   );
 };
