@@ -3,6 +3,7 @@ import { MOCK_DATA } from "../data/mockData";
 import { PokemonDetail } from "../components/PokemonDetail";
 import styled from "styled-components";
 import { colors } from "../styles/colors";
+import { DetailContext } from "../context/DetailContext";
 
 const StyledDetailPage = styled.div`
   display: flex;
@@ -34,8 +35,10 @@ export const Detail = () => {
   const pokemon = searchPokemon(pokemonId);
 
   return (
-    <StyledDetailPage>
-      <PokemonDetail goToBack={goToBack} pokemon={pokemon} />
-    </StyledDetailPage>
+    <DetailContext.Provider value={{ pokemon, goToBack }}>
+      <StyledDetailPage>
+        <PokemonDetail />
+      </StyledDetailPage>
+    </DetailContext.Provider>
   );
 };

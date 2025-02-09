@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import { pokemonTypes } from "../data/pokemonType";
 import { typeImages } from "../assets/types/index.js";
+import { useContext } from "react";
+import { DetailContext } from "../context/DetailContext.js";
 
 const Styledtypes = styled.div`
   display: flex;
@@ -26,10 +28,12 @@ const TypeImage = styled.img`
 /**
  * * 포켓몬 타입 배열을 그리는 컴포넌트
  * 아래 작성한 Type 컴포넌트를 반복
- * @param {Array} types - 포켓몬의 타입 배열 [string]
  * @param {string} className - 타입에 스타일 컴포넌트를 추가하면서 받는 클래스 이름
  */
-export const Types = ({ types, className }) => {
+export const Types = ({ className }) => {
+  const data = useContext(DetailContext);
+  const types = data.pokemon.types;
+
   return (
     <Styledtypes className={className}>
       {types.map((type, index) => (

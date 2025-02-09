@@ -4,6 +4,8 @@ import { PokemonCard } from "./PokemonCard";
 import { StyledBox } from "../styles/components/Box";
 import { StyledTitle } from "../styles/components/Title";
 import { colors } from "../styles/colors";
+import { useContext } from "react";
+import { DexContext } from "../context/DexContext";
 
 const MAX_POKEMON_NUM = 6;
 
@@ -57,12 +59,11 @@ const PokeballImage = styled.img`
 
 /**
  * * 사용자가 선택한 포켓몬을 표시하는 컴포넌트
- * @param {array} myPokemons - 사용자가 선택한 포켓몬 객체 리스트 [
- *    {img_url, korean_name, types, id, description}
- * ]
- * @param {Function} removePokemon - 포켓몬 삭제 핸들러 함수 (id) => void
  */
-export const Dashboard = ({ myPokemons, removePokemon }) => {
+export const Dashboard = () => {
+  const data = useContext(DexContext);
+  const myPokemons = data.myPokemons;
+  const removePokemon = data.removePokemon;
   const availableCount = MAX_POKEMON_NUM - myPokemons.length;
 
   return (

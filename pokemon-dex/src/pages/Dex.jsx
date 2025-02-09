@@ -3,6 +3,7 @@ import { Dashboard } from "../components/Dashboard";
 import { PokemonList } from "../components/PokemonList";
 import styled from "styled-components";
 import { colors } from "../styles/colors";
+import { DexContext } from "../context/DexContext";
 
 const StyledDexPage = styled.div`
   display: flex;
@@ -40,9 +41,11 @@ export const Dex = () => {
   };
 
   return (
-    <StyledDexPage>
-      <Dashboard myPokemons={myPokemons} removePokemon={removePokemon} />
-      <PokemonList addPokemon={addPokemon} />
-    </StyledDexPage>
+    <DexContext.Provider value={{ myPokemons, removePokemon, addPokemon }}>
+      <StyledDexPage>
+        <Dashboard />
+        <PokemonList />
+      </StyledDexPage>
+    </DexContext.Provider>
   );
 };
