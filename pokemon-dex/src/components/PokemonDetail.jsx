@@ -4,6 +4,8 @@ import { StyledBox } from "../styles/components/Box";
 import { TitleWithButton } from "../styles/components/Title";
 import { colors } from "../styles/colors";
 import { BiSolidRightArrow } from "react-icons/bi";
+import { useContext } from "react";
+import { DetailContext } from "../context/DetailContext";
 
 const StyledDetail = styled(StyledBox)`
   width: 80%;
@@ -80,11 +82,12 @@ const PokemonType = styled(Types)`
 
 /**
  * * 포켓몬의 디테일 정보를 표시하는 컴포넌트
- * @param pokemon - 포켓몬 정보 {img_url, korean_name, types, id, description}
  * TODO - 스타일 리팩토링하기
  */
-export const PokemonDetail = ({ pokemon, goToBack }) => {
-  const { img_url, korean_name, types, description } = pokemon;
+export const PokemonDetail = () => {
+  const data = useContext(DetailContext);
+  const { img_url, korean_name, description } = data.pokemon;
+  const goToBack = data.goToBack;
 
   return (
     <StyledDetail>
@@ -95,7 +98,7 @@ export const PokemonDetail = ({ pokemon, goToBack }) => {
       </InfoWrapper>
       <InfoWrapper>
         <Info>타입</Info>
-        <PokemonType types={types} />
+        <PokemonType />
       </InfoWrapper>
       <PokemonImageBox>
         <img src={img_url} />
