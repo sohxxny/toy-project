@@ -1,10 +1,14 @@
-import styled from "styled-components";
+import { styled } from "styled-components";
 import pokeballImage from "../assets/pokeball.png";
 import { PokemonCard } from "./PokemonCard";
+import { StyledBox } from "../styles/components/Box";
+import { StyledTitle } from "../styles/components/Title";
+import { colors } from "../styles/colors";
 
 const MAX_POKEMON_NUM = 6;
 
-const StyledDashboard = styled.div`
+const StyledDashboard = styled(StyledBox)`
+  margin: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -12,19 +16,43 @@ const StyledDashboard = styled.div`
 `;
 
 const StyledPokeballs = styled.div`
-  display: flex;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(${MAX_POKEMON_NUM}, minmax(120px, 180px));
+  grid-gap: 5px;
+  align-items: center;
+  justify-content: center;
+  padding: 25px;
+  box-sizing: border-box;
+  gap: 10px;
+
+  @media (max-width: 900px) {
+    grid-template-columns: repeat(${MAX_POKEMON_NUM / 2}, minmax(120px, 180px));
+  }
+
+  @media (max-width: 500px) {
+    grid-template-columns: repeat(2, minmax(120px, 180px));
+  }
+
+  @media (max-width: 380px) {
+    grid-template-columns: repeat(1, minmax(120px, 180px));
+  }
 `;
 
 const StyledPokeball = styled.div`
-  width: 100px;
-  height: 100px;
-  border: 1px soild black;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: ${colors.gray.light};
+  border-top: 2px solid ${colors.white.medium};
+  border-left: 2px solid ${colors.white.medium};
+  border-bottom: 2px solid ${colors.white.dark};
+  border-right: 2px solid ${colors.white.dark};
 `;
 
 const PokeballImage = styled.img`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  width: 50px;
 `;
 
 /**
@@ -39,7 +67,7 @@ export const Dashboard = ({ myPokemons, removePokemon }) => {
 
   return (
     <StyledDashboard>
-      <div>나만의 포켓몬</div>
+      <StyledTitle>나만의 포켓몬</StyledTitle>
       <StyledPokeballs>
         {/* 선택된 포켓몬 개수만큼 그리기 */}
         {myPokemons.map((myPokemon) => (

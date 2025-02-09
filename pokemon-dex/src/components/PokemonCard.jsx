@@ -1,13 +1,55 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { StyledCard } from "../styles/components/Card";
+import { colors } from "../styles/colors";
 
-const StyleCard = styled.div`
-  height: 300px;
-  border: 1px solid black;
+const StyledPokemonCard = styled(StyledCard)`
+  height: 200px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+`;
+
+const StyledNumber = styled.span`
+  color: ${colors.gray.dark};
+  font-size: small;
+`;
+
+const StyledTitle = styled.span`
+  color: black;
+  font-size: 15px;
+  font-weight: bold;
+  margin: 5px;
+`;
+
+const AddButton = styled.button`
+  padding: 5px 20px 5px 20px;
+  font-size: 10px;
+  font-weight: 600;
+  margin: 5px;
+  background-color: ${colors.gray.medium};
+  border: none;
+  color: black;
+
+  border-top: 2px solid ${colors.gray.light};
+  border-left: 2px solid ${colors.gray.light};
+  border-bottom: 2px solid ${colors.navy.dark};
+  border-right: 2px solid ${colors.navy.dark};
+  font-family: "DungGeunMo", sans-serif;
+
+  &:hover {
+    background-color: ${colors.white.dark};
+  }
+
+  &:active {
+    background-color: ${colors.navy.medium};
+    color: white;
+    border-top: 2px solid ${colors.gray.dark};
+    border-left: 2px solid ${colors.gray.dark};
+    border-bottom: 2px solid ${colors.gray.light};
+    border-right: 2px solid ${colors.gray.light};
+  }
 `;
 
 /**
@@ -33,12 +75,13 @@ export const PokemonCard = ({ data, buttonType, onClick }) => {
     onClick(buttonType === "추가" ? data : id);
   };
 
+  // TODO - 포켓몬 id 값을 3자리로 바꾸기
   return (
-    <StyleCard onClick={() => goToDetail(id)}>
+    <StyledPokemonCard onClick={() => goToDetail(id)}>
+      <StyledNumber>No. {id}</StyledNumber>
+      <StyledTitle>{korean_name}</StyledTitle>
       <img src={img_url} />
-      <div>{korean_name}</div>
-      <div>No. {id}</div>
-      <button onClick={(e) => buttonClick(e)}>{buttonType}</button>
-    </StyleCard>
+      <AddButton onClick={(e) => buttonClick(e)}>{buttonType}</AddButton>
+    </StyledPokemonCard>
   );
 };
