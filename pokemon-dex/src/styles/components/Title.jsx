@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { colors } from "../colors";
+import { useNavigation } from "../../hooks/useNavigation";
 
 // * Box의 타이틀을 정의하는 스타일 컴포넌트
 export const StyledTitle = styled.div`
@@ -43,13 +44,14 @@ const CloseButton = styled.button`
 /**
  * * 닫기 버튼이 있는 타이틀
  * @param {string} title - 타이틀 문자열
- * @param {Function} goToBack - 뒤로가기 함수 () => void
  */
-export const TitleWithButton = ({ title, goToBack }) => {
+export const TitleWithButton = ({ title }) => {
+  const { goBack } = useNavigation();
+
   return (
     <StyledTitle>
       {title}
-      <CloseButton onClick={goToBack}>X</CloseButton>
+      <CloseButton onClick={goBack}>X</CloseButton>
     </StyledTitle>
   );
 };

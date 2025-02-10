@@ -4,8 +4,8 @@ import { PokemonCard } from "./PokemonCard";
 import { StyledBox } from "../styles/components/Box";
 import { StyledTitle } from "../styles/components/Title";
 import { colors } from "../styles/colors";
-import { useContext } from "react";
-import { DexContext } from "../context/DexContext";
+import { useSelector, useDispatch } from "react-redux";
+import { removePokemon } from "../redux/slices/pokemonSlice";
 
 const MAX_POKEMON_NUM = 6;
 
@@ -61,9 +61,8 @@ const PokeballImage = styled.img`
  * * 사용자가 선택한 포켓몬을 표시하는 컴포넌트
  */
 export const Dashboard = () => {
-  const data = useContext(DexContext);
-  const myPokemons = data.myPokemons;
-  const removePokemon = data.removePokemon;
+  const myPokemons = useSelector((state) => state.pokemonReducer.pokemons);
+  const dispatch = useDispatch();
   const availableCount = MAX_POKEMON_NUM - myPokemons.length;
 
   return (
@@ -76,7 +75,7 @@ export const Dashboard = () => {
             key={myPokemon.id}
             data={myPokemon}
             buttonType="삭제"
-            onClick={removePokemon}
+            onClick={() => dispatch(removePokemon(myPokemon.id))}
           />
         ))}
 

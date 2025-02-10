@@ -1,7 +1,7 @@
-import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { StyledCard } from "../styles/components/Card";
 import { colors } from "../styles/colors";
+import { useNavigation } from "../hooks/useNavigation";
 
 const StyledPokemonCard = styled(StyledCard)`
   height: 200px;
@@ -62,22 +62,17 @@ const AddButton = styled.button`
  */
 export const PokemonCard = ({ data, buttonType, onClick }) => {
   const { img_url, korean_name, id } = data;
-  const navigate = useNavigate();
-
-  // * 카드 상세 페이지 이동 핸들러
-  const goToDetail = (id) => {
-    navigate(`/detail?id=${id}`);
-  };
+  const { goDetail } = useNavigation();
 
   // * 카드와 버튼 클릭 이벤트 버블링 방지용 함수
   const buttonClick = (e) => {
     e.stopPropagation();
-    onClick(buttonType === "추가" ? data : id);
+    onClick();
   };
 
   // TODO - 포켓몬 id 값을 3자리로 바꾸기
   return (
-    <StyledPokemonCard onClick={() => goToDetail(id)}>
+    <StyledPokemonCard onClick={() => goDetail(id)}>
       <StyledNumber>No. {id}</StyledNumber>
       <StyledTitle>{korean_name}</StyledTitle>
       <img src={img_url} />

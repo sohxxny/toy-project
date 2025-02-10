@@ -1,7 +1,7 @@
-import { useNavigate } from "react-router-dom";
 import pokeballImage from "../assets/pokeball.png";
 import styled from "styled-components";
 import { colors } from "../styles/colors";
+import { useNavigation } from "../hooks/useNavigation";
 
 const StyledHomePage = styled.div`
   background-color: ${colors.background};
@@ -40,15 +40,10 @@ const GotoDexText = styled.div`
  * * 홈 페이지
  */
 export const Home = () => {
-  const navigate = useNavigate();
-
-  const goToDex = () => {
-    navigate("/dex");
-  };
-
+  const { goDex } = useNavigation();
   return (
     <StyledHomePage>
-      <GotoDexButton onClick={goToDex}>
+      <GotoDexButton onClick={goDex}>
         <LogoWrapper src={pokeballImage} alt="포켓몬 로고" />
         <GotoDexText>go to dex</GotoDexText>
       </GotoDexButton>
