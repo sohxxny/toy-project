@@ -3,8 +3,10 @@ import { MOCK_DATA } from "../data/mockData";
 import styled from "styled-components";
 import { StyledBox } from "../styles/components/Box";
 import { StyledTitle } from "../styles/components/Title";
-import { useContext } from "react";
-import { DexContext } from "../context/DexContext";
+import { useDispatch } from "react-redux";
+import { addPokemon } from "../redux/slices/pokemonSlice";
+import { toast } from "react-toastify";
+import { useSelector } from "react-redux";
 
 const StyledCardsGlobal = styled(StyledBox)`
   margin: 0 30px 30px 30px;
@@ -22,8 +24,24 @@ const StyledCardsList = styled.div`
  * * 포켓몬 전체 리스트를 카드로 보여주는 컴포넌트
  */
 export const PokemonList = () => {
-  const data = useContext(DexContext);
-  const addPokemon = data.addPokemon;
+  const dispatch = useDispatch();
+  const myPokemons = useSelector((state) => state.pokemonReducer.pokemons);
+
+  /**
+   * * 이미 6개가 선택되었거나 중복 선택을 하는 경우 alert하는 함수
+   * @param {Object} pokemon - 포켓몬 정보 {img_url, korean_name, types, id, description}
+   */
+  const handleSelectionValidation = (pokemon) => {
+    if (myPokemons.length >= 6) {
+      toast.warn("더 이상 선택할 수 없습니다.");
+      return;
+    }
+    if (myPokemons.some((myPokemon) => pokemon.id === myPokemon.id)) {
+      toast.warn("이미 선택된 포켓몬입니다.");
+      return;
+    }
+    dispatch(addPokemon(pokemon));
+  };
 
   return (
     <StyledCardsGlobal>
@@ -34,7 +52,7 @@ export const PokemonList = () => {
             key={pokemon.id}
             data={pokemon}
             buttonType="추가"
-            onClick={addPokemon}
+            onClick={() => handleSelectionValidation(pokemon)}
           />
         ))}
       </StyledCardsList>

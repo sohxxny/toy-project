@@ -4,8 +4,11 @@ import { StyledBox } from "../styles/components/Box";
 import { TitleWithButton } from "../styles/components/Title";
 import { colors } from "../styles/colors";
 import { BiSolidRightArrow } from "react-icons/bi";
-import { useContext } from "react";
-import { DetailContext } from "../context/DetailContext";
+import { StyledButton } from "../styles/components/Button";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { addPokemon, removePokemon } from "../redux/slices/pokemonSlice";
+import { toast } from "react-toastify";
 
 const StyledDetail = styled(StyledBox)`
   width: 80%;
@@ -80,25 +83,50 @@ const PokemonType = styled(Types)`
   flex-grow: 1;
 `;
 
+const DetailButtons = styled.div`
+  width: 100%;
+  display: flex;
+  padding: 5px;
+  box-sizing: border-box;
+`;
+
+const DetailButton = styled(StyledButton)`
+  padding: 5px 20px 5px 20px;
+`;
+
 /**
  * * 포켓몬의 디테일 정보를 표시하는 컴포넌트
+ * @param {Object} pokemon - 포켓몬 정보 {img_url, korean_name, types, id, description}
  * TODO - 스타일 리팩토링하기
  */
-export const PokemonDetail = () => {
-  const data = useContext(DetailContext);
-  const { img_url, korean_name, description } = data.pokemon;
-  const goToBack = data.goToBack;
+export const PokemonDetail = ({ pokemon }) => {
+  const { img_url, korean_name, types, id, description } = pokemon;
+  const myPokemons = useSelector((state) => state.pokemonReducer.pokemons);
+  const dispatch = useDispatch();
+
+  const isMypokemon = myPokemons.some((pokemon) => pokemon.id === id);
+
+  // * 포켓몬 소유 여부에 따라 다른 액션을 전달하는 핸들러 함수
+  const detailButtonOnClick = () => {
+    if (isMypokemon) {
+      dispatch(removePokemon(id));
+      toast.success("삭제되었습니다.");
+    } else {
+      dispatch(addPokemon(pokemon));
+      toast.success("추가되었습니다.");
+    }
+  };
 
   return (
     <StyledDetail>
-      <TitleWithButton goToBack={goToBack} title="포켓몬 상세정보" />
+      <TitleWithButton title="포켓몬 상세정보" />
       <InfoWrapper>
         <Info>이름</Info>
         <PokemonName>{korean_name}</PokemonName>
       </InfoWrapper>
       <InfoWrapper>
         <Info>타입</Info>
-        <PokemonType />
+        <PokemonType types={types} />
       </InfoWrapper>
       <PokemonImageBox>
         <img src={img_url} />
@@ -106,6 +134,11 @@ export const PokemonDetail = () => {
           <TriangleIcon /> {description}
         </PokemonDesc>
       </PokemonImageBox>
+      <DetailButtons>
+        <DetailButton onClick={detailButtonOnClick}>
+          {isMypokemon ? "삭제" : "추가"}
+        </DetailButton>
+      </DetailButtons>
     </StyledDetail>
   );
 };
