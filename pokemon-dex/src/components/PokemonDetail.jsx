@@ -8,6 +8,7 @@ import { StyledButton } from "../styles/components/Button";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { addPokemon, removePokemon } from "../redux/slices/pokemonSlice";
+import { toast } from "react-toastify";
 
 const StyledDetail = styled(StyledBox)`
   width: 80%;
@@ -109,10 +110,10 @@ export const PokemonDetail = ({ pokemon }) => {
   const detailButtonOnClick = () => {
     if (isMypokemon) {
       dispatch(removePokemon(id));
-      alert("삭제되었습니다.");
+      toast.success("삭제되었습니다.");
     } else {
       dispatch(addPokemon(pokemon));
-      alert("추가되었습니다.");
+      toast.success("추가되었습니다.");
     }
   };
 
