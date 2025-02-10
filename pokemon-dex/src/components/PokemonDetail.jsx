@@ -4,6 +4,10 @@ import { StyledBox } from "../styles/components/Box";
 import { TitleWithButton } from "../styles/components/Title";
 import { colors } from "../styles/colors";
 import { BiSolidRightArrow } from "react-icons/bi";
+import { StyledButton } from "../styles/components/Button";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { addPokemon, removePokemon } from "../redux/slices/pokemonSlice";
 
 const StyledDetail = styled(StyledBox)`
   width: 80%;
@@ -78,13 +82,39 @@ const PokemonType = styled(Types)`
   flex-grow: 1;
 `;
 
+const DetailButtons = styled.div`
+  width: 100%;
+  display: flex;
+  padding: 5px;
+  box-sizing: border-box;
+`;
+
+const DetailButton = styled(StyledButton)`
+  padding: 5px 20px 5px 20px;
+`;
+
 /**
  * * 포켓몬의 디테일 정보를 표시하는 컴포넌트
  * @param {Object} pokemon - 포켓몬 정보 {img_url, korean_name, types, id, description}
  * TODO - 스타일 리팩토링하기
  */
 export const PokemonDetail = ({ pokemon }) => {
-  const { img_url, korean_name, types, description } = pokemon;
+  const { img_url, korean_name, types, id, description } = pokemon;
+  const myPokemons = useSelector((state) => state.pokemonReducer.pokemons);
+  const dispatch = useDispatch();
+
+  const isMypokemon = myPokemons.some((pokemon) => pokemon.id === id);
+
+  // * 포켓몬 소유 여부에 따라 다른 액션을 전달하는 핸들러 함수
+  const detailButtonOnClick = () => {
+    if (isMypokemon) {
+      dispatch(removePokemon(id));
+      alert("삭제되었습니다.");
+    } else {
+      dispatch(addPokemon(pokemon));
+      alert("추가되었습니다.");
+    }
+  };
 
   return (
     <StyledDetail>
@@ -103,6 +133,11 @@ export const PokemonDetail = ({ pokemon }) => {
           <TriangleIcon /> {description}
         </PokemonDesc>
       </PokemonImageBox>
+      <DetailButtons>
+        <DetailButton onClick={detailButtonOnClick}>
+          {isMypokemon ? "삭제" : "추가"}
+        </DetailButton>
+      </DetailButtons>
     </StyledDetail>
   );
 };

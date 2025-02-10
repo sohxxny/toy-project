@@ -70,10 +70,14 @@ export const PokemonCard = ({ data, buttonType, onClick }) => {
     onClick();
   };
 
-  // TODO - 포켓몬 id 값을 3자리로 바꾸기
+  // * 포켓몬 id 값을 3자리로 바꾸는 함수
+  const formatNumber = (number) => {
+    return String(number).padStart(3, "0");
+  };
+
   return (
     <StyledPokemonCard onClick={() => goDetail(id)}>
-      <StyledNumber>No. {id}</StyledNumber>
+      <StyledNumber>No. {formatNumber(id)}</StyledNumber>
       <StyledTitle>{korean_name}</StyledTitle>
       <img src={img_url} />
       <AddButton onClick={(e) => buttonClick(e)}>{buttonType}</AddButton>
