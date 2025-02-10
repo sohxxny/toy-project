@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { colors } from "../colors";
 import { useNavigation } from "../../hooks/useNavigation";
+import { StyledButton } from "./Button";
 
 // * Box의 타이틀을 정의하는 스타일 컴포넌트
 export const StyledTitle = styled.div`
@@ -15,30 +16,10 @@ export const StyledTitle = styled.div`
 `;
 
 // * 버튼이 있는 타이틀 스타일 컴포넌트
-const CloseButton = styled.button`
-  background-color: ${colors.gray.medium};
+const CloseButton = styled(StyledButton)`
   height: 100%;
   aspect-ratio: 10/9;
   padding: 4px;
-
-  display: flex;
-  align-items: center;
-
-  font-family: "DungGeunMo", sans-serif;
-  border-top: 2px solid ${colors.gray.light};
-  border-left: 2px solid ${colors.gray.light};
-  border-bottom: 2px solid ${colors.gray.dark};
-  border-right: 2px solid ${colors.gray.dark};
-  margin-left: auto;
-  color: black;
-
-  &:active {
-    filter: brightness(0.95);
-    border-top: 2px solid ${colors.gray.dark};
-    border-left: 2px solid ${colors.gray.dark};
-    border-bottom: 2px solid ${colors.gray.light};
-    border-right: 2px solid ${colors.gray.light};
-  }
 `;
 
 /**
