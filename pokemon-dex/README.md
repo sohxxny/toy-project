@@ -1,4 +1,4 @@
-# Pokemon Dex
+# 포켓몬 도감
 
 ## 프로젝트 개요
 
@@ -23,9 +23,7 @@
 
 ### 메인 개발 환경
 
-<img src="https://img.shields.io/static/v1?label=React&message=18.3&color=61DAFB">
-<img src="https://img.shields.io/static/v1?label=JavaScript&message=ES6&color=F7DF1E">
-<img src="https://img.shields.io/static/v1?label=vite&message=6.0&color=646CFF">
+<img src="https://img.shields.io/static/v1?label=React&message=18.3&color=61DAFB"> <img src="https://img.shields.io/static/v1?label=JavaScript&message=ES6&color=F7DF1E"> <img src="https://img.shields.io/static/v1?label=vite&message=6.0&color=646CFF">
 
 ### 상태 관리
 
@@ -71,6 +69,8 @@ src/
 ## 화면 구성
 
 <p align = "center">
+<img width="500" alt="home page" src="https://github.com/user-attachments/assets/b01a00fe-e6f3-4be7-9d64-2aed09ed237d" /> 
 <img width="500" alt="dex page" src="https://github.com/user-attachments/assets/2b3056f2-fddb-46dd-9ba4-5a1f4cfd3dad" /><br><br>
-<img width="500" alt="detail page" src="https://github.com/user-attachments/assets/6ab9d94e-cae5-478c-971e-67f5dd88006f" />
+<img width="500" alt="detail page" src="https://github.com/user-attachments/assets/6ab9d94e-cae5-478c-971e-67f5dd88006f" /> 
+<img width="500" alt="404 page" src="https://github.com/user-attachments/assets/c911ea91-0e28-49f3-ae38-3632cdc2712c" />
 </p>
