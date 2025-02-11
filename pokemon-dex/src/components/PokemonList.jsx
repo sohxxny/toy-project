@@ -10,11 +10,17 @@ import { useSelector } from "react-redux";
 
 const StyledCardsGlobal = styled(StyledBox)`
   margin: 0 30px 30px 30px;
+  /* display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; */
 `;
 
 const StyledCardsList = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  max-width: 1400px;
+  margin: 0px auto 0px auto;
   align-items: center;
   justify-content: center;
   padding: 30px 25px 30px 25px;
