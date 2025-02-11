@@ -9,6 +9,11 @@ export const useNavigation = () => {
     navigate(-1);
   };
 
+  // * 홈 페이지로 이동 함수
+  const goHome = () => {
+    navigate("/");
+  };
+
   // * 도감 페이지로 이동 함수
   const goDex = () => {
     navigate("/dex");
@@ -19,5 +24,5 @@ export const useNavigation = () => {
     navigate(`/detail?id=${id}`);
   };
 
-  return { goBack, goDex, goDetail };
+  return { goBack, goHome, goDex, goDetail };
 };
