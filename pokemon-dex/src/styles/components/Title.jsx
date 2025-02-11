@@ -27,12 +27,12 @@ const CloseButton = styled(StyledButton)`
  * @param {string} title - 타이틀 문자열
  */
 export const TitleWithButton = ({ title }) => {
-  const { goBack } = useNavigation();
+  const { goDex } = useNavigation();
 
   return (
     <StyledTitle>
       {title}
-      <CloseButton onClick={goBack}>X</CloseButton>
+      <CloseButton onClick={goDex}>X</CloseButton>
     </StyledTitle>
   );
 };
