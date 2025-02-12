@@ -112,11 +112,18 @@ export const PokemonDetail = ({ pokemon }) => {
       dispatch(removePokemon(id));
       toast.success("삭제되었습니다.");
     } else {
+      if (myPokemons.length >= 6) {
+        toast.warn("더 이상 선택할 수 없습니다.");
+        return;
+      }
+      if (myPokemons.some((myPokemon) => pokemon.id === myPokemon.id)) {
+        toast.warn("이미 선택된 포켓몬입니다.");
+        return;
+      }
       dispatch(addPokemon(pokemon));
       toast.success("추가되었습니다.");
     }
   };
-
   return (
     <StyledDetail>
       <TitleWithButton title="포켓몬 상세정보" />

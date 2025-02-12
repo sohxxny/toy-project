@@ -35,6 +35,9 @@ const GoHomeButton = styled(StyledButton)`
   font-size: small;
 `;
 
+/**
+ * * 404 페이지
+ */
 export const NotFound = () => {
   const { goHome } = useNavigation();
   return (
