@@ -3,6 +3,21 @@ import styled from "styled-components";
 import { colors } from "../styles/colors";
 import { useNavigation } from "../hooks/useNavigation";
 
+/**
+ * * 홈 페이지
+ */
+export const Home = () => {
+  const { goDex } = useNavigation();
+  return (
+    <StyledHomePage>
+      <GotoDexButton onClick={goDex}>
+        <img src={pokeballImage} alt="포켓몬 로고" />
+        <div className="goto-dex-text">go to dex</div>
+      </GotoDexButton>
+    </StyledHomePage>
+  );
+};
+
 const StyledHomePage = styled.div`
   background-color: ${colors.background};
   display: flex;
@@ -10,10 +25,6 @@ const StyledHomePage = styled.div`
   align-items: center;
   justify-content: center;
   height: 100vh;
-`;
-
-const LogoWrapper = styled.img`
-  width: 50px;
 `;
 
 const GotoDexButton = styled.div`
@@ -29,24 +40,13 @@ const GotoDexButton = styled.div`
     background-color: ${colors.blue};
     opacity: 0.5;
   }
-`;
 
-const GotoDexText = styled.div`
-  font-size: medium;
-  color: white;
-`;
+  img {
+    width: 50px;
+  }
 
-/**
- * * 홈 페이지
- */
-export const Home = () => {
-  const { goDex } = useNavigation();
-  return (
-    <StyledHomePage>
-      <GotoDexButton onClick={goDex}>
-        <LogoWrapper src={pokeballImage} alt="포켓몬 로고" />
-        <GotoDexText>go to dex</GotoDexText>
-      </GotoDexButton>
-    </StyledHomePage>
-  );
-};
+  .goto-dex-text {
+    font-size: medium;
+    color: white;
+  }
+`;

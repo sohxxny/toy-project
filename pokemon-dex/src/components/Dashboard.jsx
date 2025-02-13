@@ -9,6 +9,40 @@ import { removePokemon } from "../redux/slices/pokemonSlice";
 
 const MAX_POKEMON_NUM = 6;
 
+/**
+ * * 사용자가 선택한 포켓몬을 표시하는 컴포넌트
+ */
+export const Dashboard = () => {
+  const myPokemons = useSelector((state) => state.pokemonReducer.pokemons);
+  const dispatch = useDispatch();
+  const availableCount = MAX_POKEMON_NUM - myPokemons.length;
+
+  return (
+    <StyledDashboard>
+      <StyledTitle>나만의 포켓몬</StyledTitle>
+
+      <StyledPokeballs>
+        {/* 선택된 포켓몬 개수만큼 그리기 */}
+        {myPokemons.map((myPokemon) => (
+          <PokemonCard
+            key={myPokemon.id}
+            data={myPokemon}
+            buttonType="삭제"
+            onClick={() => dispatch(removePokemon(myPokemon.id))}
+          />
+        ))}
+
+        {/* 남은 공간은 포켓볼 그리기*/}
+        {Array.from({ length: availableCount }).map((_, index) => (
+          <span className="pokeball" key={index}>
+            <img className="pokeball-image" src={pokeballImage} alt="포켓볼" />
+          </span>
+        ))}
+      </StyledPokeballs>
+    </StyledDashboard>
+  );
+};
+
 const StyledDashboard = styled(StyledBox)`
   margin: 30px;
   display: flex;
@@ -39,53 +73,20 @@ const StyledPokeballs = styled.div`
   @media (max-width: 380px) {
     grid-template-columns: repeat(1, minmax(120px, 180px));
   }
+
+  .pokeball {
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: ${colors.gray.light};
+    border-top: 2px solid ${colors.white.medium};
+    border-left: 2px solid ${colors.white.medium};
+    border-bottom: 2px solid ${colors.white.dark};
+    border-right: 2px solid ${colors.white.dark};
+  }
+
+  .pokeball-image {
+    width: 50px;
+  }
 `;
-
-const StyledPokeball = styled.div`
-  height: 200px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: ${colors.gray.light};
-  border-top: 2px solid ${colors.white.medium};
-  border-left: 2px solid ${colors.white.medium};
-  border-bottom: 2px solid ${colors.white.dark};
-  border-right: 2px solid ${colors.white.dark};
-`;
-
-const PokeballImage = styled.img`
-  width: 50px;
-`;
-
-/**
- * * 사용자가 선택한 포켓몬을 표시하는 컴포넌트
- */
-export const Dashboard = () => {
-  const myPokemons = useSelector((state) => state.pokemonReducer.pokemons);
-  const dispatch = useDispatch();
-  const availableCount = MAX_POKEMON_NUM - myPokemons.length;
-
-  return (
-    <StyledDashboard>
-      <StyledTitle>나만의 포켓몬</StyledTitle>
-      <StyledPokeballs>
-        {/* 선택된 포켓몬 개수만큼 그리기 */}
-        {myPokemons.map((myPokemon) => (
-          <PokemonCard
-            key={myPokemon.id}
-            data={myPokemon}
-            buttonType="삭제"
-            onClick={() => dispatch(removePokemon(myPokemon.id))}
-          />
-        ))}
-
-        {/* 남은 공간은 포켓볼 그리기*/}
-        {Array.from({ length: availableCount }).map((_, index) => (
-          <StyledPokeball key={index}>
-            <PokeballImage src={pokeballImage} alt="포켓볼" />
-          </StyledPokeball>
-        ))}
-      </StyledPokeballs>
-    </StyledDashboard>
-  );
-};

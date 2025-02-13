@@ -4,15 +4,6 @@ import { PokemonDetail } from "../components/PokemonDetail";
 import styled from "styled-components";
 import { colors } from "../styles/colors";
 
-const StyledDetailPage = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  background-color: ${colors.background};
-`;
-
 /**
  * * 포켓몬의 상세 정보를 보여주는 페이지
  */
@@ -33,3 +24,12 @@ export const Detail = () => {
     </StyledDetailPage>
   );
 };
+
+const StyledDetailPage = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: ${colors.background};
+`;

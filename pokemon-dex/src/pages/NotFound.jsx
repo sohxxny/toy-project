@@ -5,6 +5,22 @@ import { StyledTitle } from "../styles/components/Title";
 import { StyledButton } from "../styles/components/Button";
 import { useNavigation } from "../hooks/useNavigation";
 
+/**
+ * * 404 페이지
+ */
+export const NotFound = () => {
+  const { goHome } = useNavigation();
+  return (
+    <StyledNotFound>
+      <MessageBox>
+        <StyledTitle>404 Not Found</StyledTitle>
+        <div className="message">⚠️ 알 수 없는 페이지입니다.</div>
+        <GoHomeButton onClick={goHome}>홈으로 이동</GoHomeButton>
+      </MessageBox>
+    </StyledNotFound>
+  );
+};
+
 const StyledNotFound = styled.div`
   background-color: ${colors.background};
   display: flex;
@@ -22,11 +38,11 @@ const MessageBox = styled(StyledBox)`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-`;
 
-const NotFoundMessage = styled.div`
-  margin: 20px;
-  font-size: small;
+  .message {
+    margin: 20px;
+    font-size: small;
+  }
 `;
 
 const GoHomeButton = styled(StyledButton)`
@@ -34,19 +50,3 @@ const GoHomeButton = styled(StyledButton)`
   margin: 0 10px 5px auto;
   font-size: small;
 `;
-
-/**
- * * 404 페이지
- */
-export const NotFound = () => {
-  const { goHome } = useNavigation();
-  return (
-    <StyledNotFound>
-      <MessageBox>
-        <StyledTitle>404 Not Found</StyledTitle>
-        <NotFoundMessage>⚠️ 알 수 없는 페이지입니다.</NotFoundMessage>
-        <GoHomeButton onClick={goHome}>홈으로 이동</GoHomeButton>
-      </MessageBox>
-    </StyledNotFound>
-  );
-};

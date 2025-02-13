@@ -3,24 +3,57 @@ import { StyledCard } from "../styles/components/Card";
 import { colors } from "../styles/colors";
 import { useNavigation } from "../hooks/useNavigation";
 
+/**
+ * * 포켓몬 카드 하나를 나타내는 컴포넌트
+ * @param {Object} data - 포켓몬 정보 {img_url, korean_name, types, id, description}
+ * @param {string} buttonType - 버튼 타입 ("추가" 또는 "삭제")
+ * @param {Function} onClick - 포켓몬 추가 및 삭제 핸들러 함수
+ *    - 포켓몬 추가: ({{img_url, korean_name, types, id, description}}) => void
+ *    - 포켓몬 삭제: (id) => void
+ */
+export const PokemonCard = ({ data, buttonType, onClick }) => {
+  const { img_url, korean_name, id } = data;
+  const { goDetail } = useNavigation();
+
+  // * 카드와 버튼 클릭 이벤트 버블링 방지용 함수
+  const buttonClick = (e) => {
+    e.stopPropagation();
+    onClick();
+  };
+
+  // * 포켓몬 id 값을 3자리로 바꾸는 함수
+  const formatNumber = (number) => {
+    return String(number).padStart(3, "0");
+  };
+
+  return (
+    <StyledPokemonCard onClick={() => goDetail(id)}>
+      <span className="pokemon-number">No. {formatNumber(id)}</span>
+      <span className="pokemon-name">{korean_name}</span>
+      <img src={img_url} />
+      <AddButton onClick={(e) => buttonClick(e)}>{buttonType}</AddButton>
+    </StyledPokemonCard>
+  );
+};
+
 const StyledPokemonCard = styled(StyledCard)`
   height: 200px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-`;
 
-const StyledNumber = styled.span`
-  color: ${colors.gray.dark};
-  font-size: small;
-`;
+  .pokemon-number {
+    color: ${colors.gray.dark};
+    font-size: small;
+  }
 
-const StyledTitle = styled.span`
-  color: black;
-  font-size: 15px;
-  font-weight: bold;
-  margin: 5px;
+  .pokemon-name {
+    color: black;
+    font-size: 15px;
+    font-weight: bold;
+    margin: 5px;
+  }
 `;
 
 const AddButton = styled.button`
@@ -51,36 +84,3 @@ const AddButton = styled.button`
     border-right: 2px solid ${colors.gray.light};
   }
 `;
-
-/**
- * * 포켓몬 카드 하나를 나타내는 컴포넌트
- * @param {Object} data - 포켓몬 정보 {img_url, korean_name, types, id, description}
- * @param {string} buttonType - 버튼 타입 ("추가" 또는 "삭제")
- * @param {Function} onClick - 포켓몬 추가 및 삭제 핸들러 함수
- *    - 포켓몬 추가: ({{img_url, korean_name, types, id, description}}) => void
- *    - 포켓몬 삭제: (id) => void
- */
-export const PokemonCard = ({ data, buttonType, onClick }) => {
-  const { img_url, korean_name, id } = data;
-  const { goDetail } = useNavigation();
-
-  // * 카드와 버튼 클릭 이벤트 버블링 방지용 함수
-  const buttonClick = (e) => {
-    e.stopPropagation();
-    onClick();
-  };
-
-  // * 포켓몬 id 값을 3자리로 바꾸는 함수
-  const formatNumber = (number) => {
-    return String(number).padStart(3, "0");
-  };
-
-  return (
-    <StyledPokemonCard onClick={() => goDetail(id)}>
-      <StyledNumber>No. {formatNumber(id)}</StyledNumber>
-      <StyledTitle>{korean_name}</StyledTitle>
-      <img src={img_url} />
-      <AddButton onClick={(e) => buttonClick(e)}>{buttonType}</AddButton>
-    </StyledPokemonCard>
-  );
-};
