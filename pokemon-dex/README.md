@@ -69,8 +69,8 @@ src/
 ## 화면 구성
 
 <p align = "center">
-<img width="300" alt="home page" src="https://github.com/user-attachments/assets/b01a00fe-e6f3-4be7-9d64-2aed09ed237d" /> 
-<img width="300" alt="dex page" src="https://github.com/user-attachments/assets/2b3056f2-fddb-46dd-9ba4-5a1f4cfd3dad" /><br><br>
-<img width="300" alt="detail page" src="https://github.com/user-attachments/assets/6ab9d94e-cae5-478c-971e-67f5dd88006f" /> 
-<img width="300" alt="404 page" src="https://github.com/user-attachments/assets/c911ea91-0e28-49f3-ae38-3632cdc2712c" />
+<img width="300" alt="home page" src="https://github.com/user-attachments/assets/b6e1724e-cd4d-4881-8e3b-fd996d33cefd" /> 
+<img width="300" alt="dex page" src="https://github.com/user-attachments/assets/03d352f2-1d78-40bf-9a71-8578c39a4869" /><br><br>
+<img width="300" alt="detail page" src="https://github.com/user-attachments/assets/60d02e63-6264-467f-b9b9-ffe8ed413776" /> 
+<img width="300" alt="404 page" src="https://github.com/user-attachments/assets/10d51f1d-13c9-4d47-a997-76ad3a01e406" />
 </p>
